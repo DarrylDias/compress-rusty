@@ -1,19 +1,18 @@
 extern crate flate2;
 
-use flate2::write::GzEncoder;
 use flate2::Compression;
+use flate2::write::GzEncoder;
 use std::env::args;
 use std::fs::File;
-use std::io::copy;
 use std::io::BufReader;
+use std::io::copy;
 use std::time::Instant;
 
 fn main() {
-  if args().len() !=3 {
+    if args().len() != 3 {
         eprintln!("Usage: `source` `target` ");
         return;
-  }
-
+    }
 
     let mut input = BufReader::new(File::open(args().nth(1).unwrap()).unwrap());
 
@@ -30,11 +29,9 @@ fn main() {
 
     println!(
         "Source len: {:?}",
-         input.get_ref().metadata().unwrap().len() 
-        
+        input.get_ref().metadata().unwrap().len()
     );
 
     println!("Target len:{:?}", output.metadata().unwrap().len());
-    println!("Elapsed: {:?}", start.elapsed()); 
-
+    println!("Elapsed: {:?}", start.elapsed());
 }
